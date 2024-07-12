@@ -502,6 +502,7 @@ function saveThings() {
     });
     
     localStorage.setItem('things', JSON.stringify(thingData));
+    alert("notes saved");
 }
 
 // Function to load notes from local storage
