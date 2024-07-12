@@ -5,6 +5,7 @@ window.onload = () => {
 
     setDateTime();
     loadNotes();
+    loadThings();
 
     addToggleListener();
 
@@ -204,8 +205,13 @@ function initializeNewThingsButton() {
 
     document.querySelector('#addThing').addEventListener('click', () => {
         if (checkNewThing(createTitle, dateSet, subMenu)) {
-            createNewThing(createTitle.value, dateSet.value, prioritySet, idCreateThing.querySelectorAll('.tag'));
 
+            if (prioritySet.querySelector('input[name="priority"]:checked')) {
+                priortyVal = prioritySet.querySelector('input[name="priority"]:checked').value;
+            } else { priortyVal = 0; }
+
+            createNewThing(createTitle.value, dateSet.value, priortyVal, idCreateThing.querySelectorAll('.tag'));
+            saveThings();
             createTitle.value = '';
 
             idCreateThing.querySelectorAll('.tag').forEach((element) => {
@@ -263,7 +269,6 @@ function initializeNewThingsButton() {
         }
 
         if ((inputValue.length != 3) && (inputValue.split('')[inputValue.length - 1] == '/')) {
-            alert('here');
             event.target.value = event.target.value.substring(0, event.target.value.length - 1);
         }
         if ((inputValue.length == 2) && (!inputValue.includes('/'))) {
@@ -350,7 +355,7 @@ function checkNewThing(createTitle, dateSet, subMenu) {
     return valid;
 }
 
-function createNewThing(title, date, prioritySet, tags) {
+function createNewThing(title, deadlineDate, prioritySet, tags, timeSpentVal="0:00", dateLastWorked='', content='') {
     parentElement = document.getElementById('thingsContainer');
     const newThing = document.createElement('div');
     const thingHeader = document.createElement('div');
@@ -373,12 +378,21 @@ function createNewThing(title, date, prioritySet, tags) {
 
     thingTitle.className = "thingTitle";
     thingTitle.innerText = title;
-    let currDate = (new Date().toLocaleDateString()).slice(0, 4);
-    currDate.split('')[1] === '/' ? currDate = '0' + currDate : currDate;
-    lastWorked.innerText = currDate;
+    if (dateLastWorked == '') {
+        let currDate = (new Date().toLocaleDateString()).slice(0, 4);
+        currDate.split('')[1] === '/' ? currDate = '0' + currDate : currDate;
+        lastWorked.className = "thingLastWorked";
+        lastWorked.innerText = currDate;
+    } else {
+        lastWorked.className = "thingLastWorked";
+        lastWorked.innerText = dateLastWorked;
+    }
 
+    
     newThing.appendChild(preview);
     preview.className = "thingPreview";
+    preview.innerText = content;
+
 
     newThing.appendChild(info);
     info.className = "thingInfo";
@@ -386,21 +400,18 @@ function createNewThing(title, date, prioritySet, tags) {
     info.appendChild(thingTags);
     thingTags.className = "thingTags";
     tags.forEach((tag) => {
-        let newTag = document.createElement('div');
-        newTag.className = "tag";
-        newTag.innerText = tag.innerText;
-        thingTags.appendChild(newTag);
+        thingTags.appendChild(tag);
     })
 
     info.appendChild(stats);
     stats.className = "thingStats";
 
     stats.appendChild(timeSpent);
-    timeSpent.innerHTML = "0:00 <i class='fa-regular fa-clock'>";
+    timeSpent.innerHTML = timeSpentVal + " <i class='fa-regular fa-clock'>";
     timeSpent.className = "timeSpent";
 
     stats.appendChild(deadline);
-    deadline.innerHTML = date + " <i class='fa-regular fa-calendar'>";
+    deadline.innerHTML = deadlineDate + " <i class='fa-regular fa-calendar'>";
     deadline.className = "deadline";
 
     if (wideDisplay) {
@@ -410,7 +421,7 @@ function createNewThing(title, date, prioritySet, tags) {
         newThing.style.width = '90%';
         newThing.style.height = '100px';
 
-        info.style.height = '35%';
+        info.style.height = '60%';
     } else {
         preview.style.display = 'flex';
 
@@ -418,18 +429,15 @@ function createNewThing(title, date, prioritySet, tags) {
         newThing.style.width = `300px`;
         newThing.style.height = '300px';
 
-        info.style.height = '60%';
+        info.style.height = '35%';
     }
 
-    if (prioritySet.querySelector('input[name="priority"]:checked')) {
-        let priortyVal = prioritySet.querySelector('input[name="priority"]:checked').value;
-        stats.appendChild(priorityRank);
-        priorityRank.innerHTML = '';
-        priorityRank.className = "priorty";
-    
-        for (let i = 0; i < priortyVal; i++) {
-            priorityRank.innerHTML += "<i class='fa-solid fa-exclamation'></i>";
-        }
+    priorityRank.value = prioritySet + '';
+    stats.appendChild(priorityRank);
+    priorityRank.innerHTML = '';
+    priorityRank.className = "priorty";
+    for (let i = 0; i < prioritySet; i++) {
+        priorityRank.innerHTML += "<i class='fa-solid fa-exclamation'></i>";
     }
 
     parentElement.appendChild(newThing)
@@ -463,5 +471,63 @@ function loadNotes() {
     if (savedNotes) {
         const notesData = JSON.parse(savedNotes);
         notesData.forEach(noteData => createSticky(noteData));
+    }
+}
+
+function saveThings() {
+    const things = document.getElementsByClassName('thing');
+    const thingData = [];
+    Array.from(things).forEach((thing) => {
+        title = thing.querySelector('.thingTitle').innerText;
+        console.log(title);
+        console.log(thing.querySelector('.thingLastWorked'));
+        lastWorked = thing.querySelector('.thingLastWorked').innerHTML;
+        content = thing.querySelector('.thingPreview').innerText;
+        tagElements = thing.querySelectorAll('.tag');
+        tags = Array.from(tagElements).map(tag => tag.innerText);
+
+        timeSpent = thing.querySelector('.timeSpent').innerText;
+        deadline = thing.querySelector('.deadline').innerText;
+        priortyVal = thing.querySelector('.priorty').value;
+        
+        thingData.push({
+            title: title,
+            lastWorked: lastWorked,
+            content: content,
+            tags: tags,
+            timeSpent: timeSpent, 
+            deadline: deadline,
+            priortyVal: priortyVal
+        });
+    });
+    
+    localStorage.setItem('things', JSON.stringify(thingData));
+}
+
+// Function to load notes from local storage
+function loadThings() {
+    const savedThings = localStorage.getItem('things');
+
+    if (savedThings) {
+        const thingsData = JSON.parse(savedThings);
+        
+        thingsData.forEach(thingData => {
+            title = thingData.title;
+            lastWorked = thingData.lastWorked;
+            priortyVal = thingData.priortyVal;
+            tagsText = thingData.tags;
+            tags = tagsText.map((tagName) => {
+                const newTag = document.createElement('div');
+                newTag.className = 'tag';
+                newTag.innerText = tagName;
+                return newTag;
+            });
+
+            content = thingData.content;
+            timeSpent = thingData.timeSpent; 
+            deadline = thingData.deadline;
+            
+            createNewThing(title, deadline, priortyVal, tags, timeSpent, lastWorked, content);
+        });
     }
 }
