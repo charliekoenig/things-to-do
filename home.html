@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<head>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!--Font Awesome Icons-->
+    <script src="https://kit.fontawesome.com/5dac05d3e4.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div name="colorChange" id="homeHeader">
+        <div id="headerText">Hey Charlie, You've Got <strong> Things To Do.</strong></div>
+        <div name="colorChange" id="dateTime">
+            <div id="time"></div>
+            <div id="date"></div>
+        </div>
+    </div>
+
+    <div name="colorChange" id="toolBar">
+        <div name="colorChange" id="quickNotesHeader">
+            <div class="notesHeadingText">Quick Notes</div>
+            <div class="notesHeadingIcon"><i class="fa-solid fa-pen-to-square"></i></div>            
+        </div>
+
+        <div name="colorChange" id="searchFilter">
+            <input id="searchBar" type="search" placeholder="Search through your Things...">
+            <div class="toolIcon"><i class="fa-solid fa-filter"></i></div>
+        </div>
+
+        <div name="colorChange" id="displayOptions">
+            <div class="toolIcon displayIcon"><i class="fa-solid fa-list"></i></div>
+            <div class="toolIcon displayIcon"><i class="fas fa-th-large"></i></div>
+        </div>
+
+        <div name="colorChange" id="focusBar">
+            <div name="timerComponent" class="toolIcon"><i class="fa-solid fa-stopwatch"></i></div>
+        </div>
+
+        <div name="colorChange" id="settings">
+            <div class="toolIcon"><i class="fa-solid fa-user"></i></div>
+            <div class="toolIcon"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+            <div name="toggle" class="toolIcon" id="lightMode"><i class="fa-solid fa-toggle-off"></i></div>
+            <div name="toggle" class="toolIcon" id="darkMode"><i class="fa-solid fa-toggle-on"></i></div>
+
+            <div class="toolIcon"><i class="fa-solid fa-gear"></i></div>
+        </div>
+
+    </div>
+
+    <div id="stickieContainer">
+
+    </div>
+
+    <div id="thingsContainer">
+        <div class="thing">
+            <div class="thingHeader">
+                <div class="thingTitle">This is the title</div>
+                <div class="thingLastWorked">7/11</div>
+            </div>
+            <div class="thingPreview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur, nisi quae. Vel fugiat, ducimus eligendi doloremque dolorem officia saepe corrupti, quos quis sapiente qui tempore necessitatibus. Quisquam minima repellat omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eos ipsa placeat, incidunt voluptatum facere quod perferendis, doloribus ab harum mollitia inventore facilis. Voluptate harum accusantium odit quos, perferendis perspiciatis!</div>
+
+            <div class="thingInfo">
+                <div class="thingTags">
+                    <div class="tag">#tagOne</div>
+                    <div class="tag">#tagTwo</div>
+                    <div class="tag">#tagThree</div>
+                    <div class="tag">#tagFour</div>
+                </div>
+
+                <div class="thingStats">
+                    <div class="timeSpent">0:00 <i class="fa-regular fa-clock"></i></div>
+                    <div class="deadline">7/14 <i class="fa-regular fa-calendar"></i></div>
+                    <div class="priorty"><i class="fa-solid fa-exclamation"></i><i class="fa-solid fa-exclamation"></i><i class="fa-solid fa-exclamation"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="thing">
+            <div class="thingHeader">
+                <div class="thingTitle">This is the title</div>
+                <div class="thingLastWorked">7/11</div>
+            </div>
+            <div class="thingPreview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur, nisi quae. Vel fugiat, ducimus eligendi doloremque dolorem officia saepe corrupti, quos quis sapiente qui tempore necessitatibus. Quisquam minima repellat omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eos ipsa placeat, incidunt voluptatum facere quod perferendis, doloribus ab harum mollitia inventore facilis. Voluptate harum accusantium odit quos, perferendis perspiciatis!</div>
+
+            <div class="thingInfo">
+                <div class="thingTags">
+                    <div class="tag">#tagOne</div>
+                    <div class="tag">#tagTwo</div>
+                    <div class="tag">#tagThree</div>
+                    <div class="tag">#tagFour</div>
+                </div>
+
+                <div class="thingStats">
+                    <div class="timeSpent">0:00 <i class="fa-regular fa-clock"></i></div>
+                    <div class="deadline">7/14 <i class="fa-regular fa-calendar"></i></div>
+                    <div class="priorty"><i class="fa-solid fa-exclamation"></i><i class="fa-solid fa-exclamation"></i><i class="fa-solid fa-exclamation"></i></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="newThingButton">
+        <i class="fa-solid fa-square-plus"></i>
+    </div>
+
+    <div id="createThing">
+        <input id="createThingTitle" type="text" placeholder="Untitled">
+        <div class="menuInfo" style="font-size: 0.8em; color: red; visibility: hidden;">Note must be titled</div>
+
+        <div id="createThingSetTags">
+            <label>Tags (optional):</label>
+            <input id="tagSearch" type="search" placeholder="#..." maxlength="10" pattern="[a-zA-Z0-9_]+">
+        </div>
+
+        <div id="createThingSetDate">
+            <label>Deadline (optional):</label>
+            <input id="dateSet" type="text" placeholder="MM/DD" maxlength="5" pattern="\d{2}/\d{2}">
+        </div>
+        <div class="menuInfo" style="font-size: 0.8em; color: red; visibility: hidden;">Enter a valid date in MM/DD format</div>
+
+        <div id="createThingSetPriority">
+            <label>Priority (optional):</label>
+                <input style="accent-color:rgba(184, 0, 0, 0.565); scale: 1.0;" type="radio" name="priority" value="1">
+                &nbsp;
+                <input style="accent-color: rgb(211, 2, 2); scale: 1.2;" type="radio" name="priority" value="2">
+                &nbsp;
+                <input style="accent-color:rgb(255, 1, 1); scale: 1.4;" type="radio" name="priority" value="3">
+        </div>
+        <div class="menuInfo" style="font-size: 0.8em; color: grey;">none</div>
+
+        <div id="closeNewThing">
+            <div id="cancelThing">Cancel</div>
+            <div id="addThing">Add Thing</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</bod>

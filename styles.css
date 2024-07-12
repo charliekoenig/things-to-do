@@ -1,0 +1,503 @@
+/* Importing fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+
+body {
+    display: flex;
+    flex-direction: column; /* Align items in a column */
+    min-height: 100vh; /* Ensure the body takes the full height of the viewport */
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Courier New', Courier, monospace;
+
+    background-color: #f0f0f0;
+
+    margin: 0;
+    padding: 0;
+}
+  
+#homeHeader {
+    position: fixed;
+    top: 0;
+    left:0;
+    z-index: 1000;
+
+    width: 100%;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #000000;
+    color: #f0f0f0;
+    border-bottom: #f0f0f0 1px solid;
+
+    box-sizing: border-box;
+}
+
+
+#headerText {
+    font-size: 1.8em;
+    margin: 10px 40px;
+}
+
+
+#toolBar {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0px;
+    padding-bottom: 10px;
+    padding-top: 90px;
+
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+
+    background-color: #000000;
+    border-bottom: 3px solid black;
+    border-color: #000000;
+    color: #f0f0f0;
+}
+
+#quickNotesHeader {
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    width: 293px;
+
+    font-size: 1.25em;
+    border-right: 3px solid;
+
+}
+
+.notesHeadingText {
+    margin-left: 40px;
+    width: 65%;
+
+    display: flex;
+    align-items: center;
+}
+
+.notesHeadingIcon {
+    width: 35%;
+    font-size: 1.12em;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-solid:hover, .fas:hover {
+    cursor: pointer;
+}
+
+#searchFilter {
+    display: flex;
+    height: 100%;
+    margin: 0px 20px;
+    
+}
+
+#searchBar {
+    width:300px;
+    height: 27.5px;
+    font-size: 1em;
+    border-radius: 10px;
+    padding: 1px 0px 1px 10px; 
+    border: 1px black solid;
+    background-color: #f0f0f0;
+
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+search::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.toolIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0px 10px;
+
+    font-size: 1.25em;
+    z-index: 1000;
+}
+
+#displayOptions, #focusBar, #settings, #toggleDisplay{
+    display: flex;
+    margin: 0px 1%;
+}
+
+#dateTime {
+    margin: 0px 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#time,#date {
+    font-weight: 600;
+    margin: 0px 10px;
+}
+
+#toggleDisplay {
+    font-size: 1.6em;
+    padding: 0px;
+}
+
+#settings {
+    display: flex;
+    width: 40%;
+    justify-content: flex-end;
+}
+
+#stickieContainer {
+    position: fixed;
+    top: 145px;
+    left:0;
+    z-index: 998;
+
+    width: 288px;
+    height: 80vh;
+
+    box-sizing: border-box;
+
+    /* testing */
+    border-right: 3px black solid;
+    overflow-y: scroll;
+    scrollbar-width:none;
+    
+}
+
+
+.sticky {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    border: 1px solid;
+    border-radius: 8px;
+    margin: 5px auto;
+    min-height: 100px;
+    padding: 3px;
+    border-top: 3px black solid;
+
+}
+
+.stickyHeader {
+    padding-top: 5px;
+    border-top: 3px black solid;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.sticky:hover {
+    cursor: pointer;
+}
+
+.stickyTitle {
+    width: 80%;
+    outline: none;
+    background-color: inherit;
+    border: none;
+    text-overflow: ellipsis;
+
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.stickyContent {
+    min-height: 80px;
+    margin-top: 5px;
+
+    outline: none;
+    border: none;
+    background-color: inherit;
+
+    resize:vertical;
+}
+
+#thingsContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 150px;
+    left: 300px;
+    
+    width: 75%;
+    flex-wrap: wrap;
+    height: 80%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+
+}
+
+.thing {
+    border: 2px black solid;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 6px;
+    margin: 0px 10px 10px;
+    width: 300px;
+    height: 300px;
+}
+
+.thing:hover {
+    cursor: pointer;
+    background-color: rgba(213, 213, 213, 0.388)
+}
+
+.thingTitle,.thingPreview:hover  {
+    cursor:default;
+}
+
+.thingHeader {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.thingTitle {
+    font-size: 1.3em;
+}
+
+.thingPreview {
+    border-radius: 8px;
+    height: 40%;
+    padding: 3px;
+    display: flex;
+    flex-direction: row;
+    overflow-y:scroll;
+
+    scrollbar-width:none;
+    
+    font-size: .8em;
+    margin-bottom: 25px;
+}
+
+.thingInfo {
+    height: 35%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.thingTags, .thingStats {
+    display: flex;
+}
+
+.thingStats {
+    flex-direction: column;
+    align-items: flex-end;
+    width: 30%;
+
+}
+
+.fa-exclamation {
+    padding-left: 3px;
+}
+
+.thingTags {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 69%;
+    align-items: flex-end;
+}
+
+.tag {
+    display: flex;
+    padding: 1px 6px;
+    margin: 4px 4px 0px 0px;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 0, 255);
+    background-color: rgb(195, 226, 250);
+    border: 1px solid rgb(0, 0, 255);
+    border-radius: 10px;
+    max-height: 45%;
+}
+
+.tag:hover {
+    cursor: pointer;
+    scale:1.05;
+}
+
+
+.subMenu {
+    display: flex;
+    background-color: 'black';
+    border: '1px solid black';
+    padding: '8px';
+    box-sizing: 'border-box';
+    border-radius: '8px';
+    width: '250px';
+    z-index: '999';    
+    color:'white'; 
+    position:'absolute';
+}
+
+#newThingButton {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 5px;
+
+    font-size: 2.0em;
+}
+
+#newThingButton:hover {
+    scale:1.05;
+}
+
+#createThing {
+    flex-direction: column;
+    position:fixed;
+    z-index: 1000;
+    width: 350px;
+    height: 40vh;
+    right: 18px;
+    bottom: 18px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    padding:10px;
+
+    display: none;
+}
+
+#createThingTitle {
+    border: none;
+    border-bottom: #000000 1px solid;
+    outline: none;
+    background-color: #f0f0f0;
+    font-size: .8em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+}
+
+input {
+    outline: none;
+    background-color: inherit;
+    border: none;
+}
+
+
+#createThingSetDate, #createThingSetTags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.menuInfo {
+    margin-bottom: 15px;
+}
+
+#createThingSetTags {
+    margin-bottom: 25px;
+}
+
+
+#createThingSetPriority {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+#createThingSetDate label, #createThingSetPriority label ,#createThingSetTags label{
+    width: 65%;
+}
+
+#createThingSetTags input, #createThingSetDate input{
+    width: 32.5%;
+}
+
+#createThingSetTags input {
+    font-size: 1.025em;
+}
+
+#closeNewThing {
+    display: flex;
+    height: 40%;
+
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#cancelThing, #addThing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    border: 1px solid;
+    border-radius: 5px;
+
+    margin-left: 6px;
+}
+
+#cancelThing:hover, #addThing:hover {
+    scale: 1.05;
+    cursor: pointer;
+}
+
+#cancelThing {
+    background-color: rgb(255, 226, 226);
+    border-color: rgb(96, 0, 0);
+    color: rgb(96, 0, 0);
+}
+
+#addThing {
+    background-color: rgba(231, 255, 231, 0.507);
+    border-color: rgb(0, 80, 0);
+    color: rgb(0, 80, 0);
+}
+
+
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+/* Hide the 'x' (clear button) in Chrome, Safari, and Edge */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Hide the 'x' (clear button) in Internet Explorer and Edge */
+input[type="search"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* Hide the 'x' (clear button) in Firefox */
+input[type="search"]::-moz-clear {
+    display: none;
+}
+
